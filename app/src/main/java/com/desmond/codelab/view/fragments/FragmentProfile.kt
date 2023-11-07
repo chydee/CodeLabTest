@@ -71,8 +71,6 @@ class FragmentProfile : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        Toast.makeText(requireContext(), "Email ${settingsContext.email}", Toast.LENGTH_SHORT).show()
         showUserData()
 
         binding.btnTakePicture.setOnClickListener {
