@@ -79,7 +79,6 @@ class FragmentProfile : Fragment() {
 
         binding.btnLogout.setOnClickListener {
             clearProfilePicture()
-            viewModel.removeUserData()
             findNavController().navigateUp()
         }
     }
