@@ -4,6 +4,25 @@
 
 ❖ MVVM ❖ Kotlin ❖ Hilt ❖ Retrofit
 
+# :scroll: Screenshots
+
+<p align="center">
+  <img src="screenshots/a.png" alt="Home Screen" width="30%" hspace="15"/>
+  <img src="screenshots/b.png" alt="Stock Detail Screen" width="30%" hspace="15"/>
+  <img src="screenshots/c.png" alt="Stock Detail Screen" width="30%" hspace="15"/>
+
+<p align="center">
+  <img src="screenshots/d.png" alt="Stock Detail Screen" width="30%" hspace="15"/>
+  <img src="screenshots/e.png" alt="Home Screen" width="30%" hspace="15"/>
+  <img src="screenshots/f.png" alt="Stock Detail Screen" width="30%" hspace="15"/>
+</p>
+
+<p align="center">
+  <img src="screenshots/g.png" alt="Stock Detail Screen" width="30%" hspace="15"/>
+  <img src="screenshots/h.png" alt="Home Screen" width="30%" hspace="15"/>
+  <img src="screenshots/i.png" alt="Stock Detail Screen" width="30%" hspace="15"/>
+</p>
+
 ## Run application
 
 `./gradlew installDebug`
