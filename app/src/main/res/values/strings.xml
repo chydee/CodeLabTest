@@ -2,4 +2,19 @@
     <string name="app_name">CodeLabTest</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="lorem_13">Et harum quidem rerum facilis est et expedita distinctio.Nam libero tempore, cum soluta</string>
+    <string name="welcome_back">Welcome Back</string>
+    <string name="username_hint">Username</string>
+    <string name="password_hint">Password</string>
+    <string name="btn_login_text">Login</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="remember_me">Remember me</string>
+    <string name="please_wait">Please wait…</string>
+    <string name="profile_label">Profile</string>
+    <string name="alert_title">Update Profile Image</string>
+    <string name="supporting_text">Choose from the options below where you\'d like to get your photo from</string>
+    <string name="cancel">Cancel</string>
+    <string name="take_photo">Take Photo</string>
+    <string name="gallery">Gallery</string>
+    <string name="logout_text">Logout</string>
 </resources>

@@ -26,7 +26,6 @@ android {
                 getDefaultProguardFile("proguard-android.txt"),
                 "proguard-rules.pro"
             )
-            buildConfigField("String", "BASE_URL", "https://dummyjson.com/")
         }
     }
     compileOptions {

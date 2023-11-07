@@ -48,7 +48,7 @@ class NetworkModule {
     @Singleton
     @Provides
     fun provideRetrofit(appExecutor: AppExecutor, client: OkHttpClient): Retrofit = Retrofit.Builder()
-        // .baseUrl(BuildConfig)
+        .baseUrl("https://dummyjson.com/")
         .client(client)
         .addConverterFactory(GsonConverterFactory.create(gson))
         .addCallAdapterFactory(CoroutineCallAdapterFactory())

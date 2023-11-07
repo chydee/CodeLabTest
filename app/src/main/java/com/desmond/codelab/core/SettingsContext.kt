@@ -64,8 +64,8 @@ class SettingsContext constructor(applicationContext: Context) {
         get() = config.getString(KEY_LOGIN_PASSWORD, "") ?: ""
         set(value) = config.edit().putString(KEY_LOGIN_PASSWORD, value).apply()
 
-    fun clearAllStoredData() {
-        config.edit().clear().apply()
+    fun clearAllStoredData(): Boolean {
+        return config.edit().clear().commit()
     }
 
     companion object {

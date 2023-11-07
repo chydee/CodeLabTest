@@ -18,4 +18,5 @@
     <color name="green">#00DF9A</color>
     <color name="red">#FF314A</color>
     <color name="grey">#212121</color>
+    <color name="input_field_stroke_color">#ECEBED</color>
 </resources>

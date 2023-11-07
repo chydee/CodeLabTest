@@ -5,7 +5,7 @@
         <item name="colorPrimary">@color/primaryColor</item>
         <item name="colorPrimaryVariant">@color/primaryDarkColor</item>
         <item name="colorOnPrimary">@color/primaryTextColor</item>
-        <item name="colorSurface">@color/white</item>
+        <item name="colorSurface">@color/black</item>
         <item name="colorAccent">@color/primaryLightColor</item>
         <item name="fontFamily">@font/roboto</item>
         <item name="android:fontFamily">@font/roboto</item>
@@ -14,17 +14,17 @@
         <item name="colorSecondaryVariant">@color/secondaryDarkColor</item>
         <item name="colorOnSecondary">@color/secondaryTextColor</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">@color/white</item>
-        <item name="statusBarBackground">@color/white</item>
+        <item name="android:statusBarColor">@color/primaryDarkColor</item>
+        <item name="statusBarBackground">@color/primaryDarkColor</item>
         <item name="statusBarForeground">@color/white</item>
         <item name="android:navigationBarColor">@color/primaryDarkColor</item>
         <item name="navigationIconTint">@color/white</item>
 
         <!-- Customize your theme here. -->
-        <item name="colorOnSurface">@color/white</item>
+        <item name="colorOnSurface">@color/black</item>
         <item name="colorError">@color/red</item>
         <item name="colorOnError">@color/white</item>
-        <item name="colorOnBackground">@color/white</item>
+        <item name="colorOnBackground">@color/black</item>
 
         <item name="android:windowAnimationStyle">@style/WindowAnimationStyle</item>
         <item name="android:windowBackground">@color/white</item>
@@ -35,6 +35,8 @@
 
         <item name="android:showDividers">none</item>
         <item name="actionBarDivider">@android:color/transparent</item>
+
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.App.MaterialAlertDialog</item>
 
     </style>
 
@@ -68,7 +70,18 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.JAMITApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.CodeLabTest.AppBarOverlay" parent="ThemeOverlay.AppCompat.ActionBar" />
 
-    <style name="Theme.JAMITApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="Theme.CodeLabTest.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="ThemeOverlay.App.MaterialAlertDialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorSecondary">@color/secondaryColor</item>
+        <item name="colorSurface">@color/white</item>
+        <item name="colorOnSurface">@color/black</item>
+        <item name="alertDialogStyle">@style/MaterialAlertDialog.App</item>
+        <item name="materialAlertDialogTitleTextStyle">@style/MaterialAlertDialog.App.Title.Text</item>
+        <item name="buttonBarPositiveButtonStyle">@style/Widget.App.Button</item>
+        <item name="buttonBarNeutralButtonStyle">@style/Widget.App.Button</item>
+    </style>
 </resources>
