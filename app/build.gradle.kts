@@ -20,11 +20,13 @@ android {
     }
 
     buildTypes {
-        release {
-            isMinifyEnabled = false
-            val baseUrl = project.findProperty("baseUrl") as String?
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-            buildConfigField("String", "BASE_URL", "$baseUrl")
+        getByName("release") {
+            isMinifyEnabled = true // Enables code shrinking for the release build type.
+            proguardFiles(
+                getDefaultProguardFile("proguard-android.txt"),
+                "proguard-rules.pro"
+            )
+            buildConfigField("String", "BASE_URL", "https://dummyjson.com/")
         }
     }
     compileOptions {
