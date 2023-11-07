@@ -94,14 +94,15 @@ class FragmentLogin : Fragment() {
 
     private fun persistUserData(data: LoginResponse) {
         settingsContext.id = data.id
-        settingsContext.userEmail = data.email
         settingsContext.userName = data.username
+        settingsContext.email = data.email
         settingsContext.avatar = data.image
         settingsContext.gender = data.gender
         settingsContext.token = data.token
         settingsContext.firstName = data.firstName
         settingsContext.lastName = data.lastName
         settingsContext.isRememberMe = binding.cbRememberMe.isChecked
+        viewModel.setUserData(data)
         saveCredentials()
     }
 

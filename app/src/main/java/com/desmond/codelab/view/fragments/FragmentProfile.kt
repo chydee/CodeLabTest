@@ -14,6 +14,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
@@ -58,12 +59,6 @@ class FragmentProfile : Fragment() {
     private var imageUri: Uri? = null
     private var currentPhotoPath: String? = null
 
-    private val cameraPermission = Manifest.permission.CAMERA
-    private val storagePermission = Manifest.permission.WRITE_EXTERNAL_STORAGE
-
-    private var cameraPermissionGranted = false
-    private var storagePermissionGranted = false
-
     private val requestOptions = RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL)
 
     override fun onCreateView(
@@ -76,9 +71,8 @@ class FragmentProfile : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        cameraPermissionGranted = ContextCompat.checkSelfPermission(requireContext(), cameraPermission) == PackageManager.PERMISSION_GRANTED
-        storagePermissionGranted = ContextCompat.checkSelfPermission(requireContext(), storagePermission) == PackageManager.PERMISSION_GRANTED
 
+        Toast.makeText(requireContext(), "Email ${settingsContext.email}", Toast.LENGTH_SHORT).show()
         showUserData()
 
         binding.btnTakePicture.setOnClickListener {
@@ -87,22 +81,31 @@ class FragmentProfile : Fragment() {
 
         binding.btnLogout.setOnClickListener {
             clearProfilePicture()
-            val isCleared = settingsContext.clearAllStoredData()
-            if (isCleared) {
-                findNavController().navigate(R.id.action_fragmentProfile_to_fragmentLogin)
-            } else {
-                Toast.makeText(requireContext(), "Error: Unable to clear user data!", Toast.LENGTH_SHORT).show()
-            }
+            viewModel.removeUserData()
+            findNavController().navigateUp()
         }
     }
 
     private fun showUserData() {
-        Glide.with(this).load(settingsContext.avatar).placeholder(R.mipmap.ic_launcher).error(R.mipmap.ic_launcher).apply(requestOptions).into(binding.userPicture)
 
-        binding.apply {
-            userFullName.text = "${settingsContext.firstName} ${settingsContext.lastName}"
-            userEmail.text = settingsContext.userEmail
-            userGender.text = settingsContext.gender
+        viewModel.userData.observe(viewLifecycleOwner) {
+            if (it != null) {
+                Glide.with(this).load(it.image).placeholder(R.mipmap.ic_launcher).error(R.mipmap.ic_launcher).apply(requestOptions).into(binding.userPicture)
+
+                binding.apply {
+                    userFullName.text = "Name: ${it.firstName} ${it.lastName}"
+                    userEmail.text = "Email: ${it.email}"
+                    userGender.text = "Gender: ${it.gender}"
+                }
+            } else {
+                Glide.with(this).load(settingsContext.avatar).placeholder(R.mipmap.ic_launcher).error(R.mipmap.ic_launcher).apply(requestOptions).into(binding.userPicture)
+
+                binding.apply {
+                    userFullName.text = "Name: ${settingsContext.firstName} ${settingsContext.lastName}"
+                    userEmail.text = "Email: ${settingsContext.email}"
+                    userGender.text = "Gender: ${settingsContext.gender}"
+                }
+            }
         }
     }
 
@@ -163,6 +166,7 @@ class FragmentProfile : Fragment() {
                 // Handle the case where there was no profile picture to delete
             }
         }
+        settingsContext.clearAllStoredData()
     }
 
     private fun showProfilePicsOptions() {
@@ -171,8 +175,20 @@ class FragmentProfile : Fragment() {
         }.setNegativeButton(resources.getString(R.string.gallery)) { dialog, which ->
             pickImage()
         }.setPositiveButton(resources.getString(R.string.take_photo)) { dialog, which ->
-            dispatchTakePictureIntent()
+            checkPermission()
         }.show()
     }
 
+    private fun checkPermission() {
+        if (ContextCompat.checkSelfPermission(
+                requireActivity(), Manifest.permission.CAMERA
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                requireActivity(), arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE), 0
+            )
+        } else {
+            dispatchTakePictureIntent()
+        }
+    }
 }

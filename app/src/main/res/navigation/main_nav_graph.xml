@@ -15,7 +15,7 @@
             app:destination="@id/fragmentProfile"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out"
-            app:launchSingleTop="true"
+            app:launchSingleTop="false"
             app:popEnterAnim="@android:anim/slide_in_left"
             app:popExitAnim="@android:anim/slide_out_right"
             app:popUpTo="@id/fragmentLogin"
@@ -25,14 +25,5 @@
         android:id="@+id/fragmentProfile"
         android:name="com.desmond.codelab.view.fragments.FragmentProfile"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile">
-        <action
-            android:id="@+id/action_fragmentProfile_to_fragmentLogin"
-            app:destination="@id/fragmentLogin"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out"
-            app:launchSingleTop="true"
-            app:popEnterAnim="@android:anim/slide_in_left"
-            app:popExitAnim="@android:anim/slide_out_right" />
-    </fragment>
+        tools:layout="@layout/fragment_profile" />
 </navigation>

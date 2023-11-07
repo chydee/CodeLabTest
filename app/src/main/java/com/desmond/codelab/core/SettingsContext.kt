@@ -30,7 +30,7 @@ class SettingsContext constructor(applicationContext: Context) {
         get() = config.getBoolean(KEY_REMEMBER_ME, false)
         set(value) = config.edit().putBoolean(KEY_REMEMBER_ME, value).apply()
 
-    var userEmail: String
+    var email: String
         get() = config.getString(KEY_USER_EMAIL, "") ?: ""
         set(value) = config.edit().putString(KEY_USER_EMAIL, value).apply()
 
@@ -53,10 +53,6 @@ class SettingsContext constructor(applicationContext: Context) {
         get() = config.getString(KEY_DEFAULT_IMAGE, "") ?: ""
         set(value) = config.edit().putString(KEY_DEFAULT_IMAGE, value).apply()
 
-    var localAvatar: String
-        get() = config.getString(KEY_LOCAL_IMAGE, "") ?: ""
-        set(value) = config.edit().putString(KEY_LOCAL_IMAGE, value).apply()
-
     var token: String
         get() = config.getString(KEY_TOKEN, "") ?: ""
         set(value) = config.edit().putString(KEY_TOKEN, value).apply()
@@ -64,8 +60,8 @@ class SettingsContext constructor(applicationContext: Context) {
         get() = config.getString(KEY_LOGIN_PASSWORD, "") ?: ""
         set(value) = config.edit().putString(KEY_LOGIN_PASSWORD, value).apply()
 
-    fun clearAllStoredData(): Boolean {
-        return config.edit().clear().commit()
+    fun clearAllStoredData() {
+        config.edit().clear().apply()
     }
 
     companion object {
@@ -80,6 +76,5 @@ class SettingsContext constructor(applicationContext: Context) {
         private const val KEY_DEFAULT_IMAGE = "def_image"
         private const val KEY_TOKEN = "token"
         private const val KEY_LOGIN_PASSWORD = "auth_password"
-        private const val KEY_LOCAL_IMAGE = "local_image_uri"
     }
 }

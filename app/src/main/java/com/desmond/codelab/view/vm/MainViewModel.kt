@@ -44,6 +44,18 @@ class MainViewModel @Inject constructor(private val repository: MainRepository, 
         }
     }
 
+    private val _userData: MutableLiveData<LoginResponse?> = MutableLiveData()
+    val userData: LiveData<LoginResponse?>
+        get() = _userData
+
+    fun setUserData(response: LoginResponse) {
+        _userData.postValue(response)
+    }
+
+    fun removeUserData() {
+        _userData.postValue(null)
+    }
+
     private fun handleError(x: Throwable) {
         x.printStackTrace()
         when (x) {
